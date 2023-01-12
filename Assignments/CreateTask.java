@@ -60,24 +60,22 @@ public class CreateTask {
 		WebElement Save = driver.findElement(By.xpath("//button[@title='Save']"));
 		Save.click();
 		
-		//Alert Message (Expected Text)
-	    String expectedAlertMessage = "TaskBootcamp was created.";
-	    /*
-	     * WebElement AlertText = driver.findElement(
-				By.xpath("//span[@class='toastMessage slds-text-heading--small forceActionsText']"));
-	    String text = AlertText.getText();
-	    System.out.println("ttttttttttttt"+text);
-	    //Assertion
-	    Assert.assertEquals(expectedAlertMessage, text);
-	     */
-	    String actualAlertMessage = driver.switchTo().alert().getText();
-	    //Assertion
-	    Assertions.assertEquals(expectedAlertMessage, actualAlertMessage);
-	    //Accept the alert (Click OK)
-	    driver.switchTo().alert().accept();
-	    
-	    Assertions.assertEquals(expectedAlertMessage, actualAlertMessage);
-	    
+		// Alert Message (Expected Text)
+		String expectedAlertMessage = "Task Bootcamp was created.";
+		String actualText = driver.findElement(By.xpath("//a[@class='forceActionLink']/parent::span")).getText();
+		System.out.println(actualText);
+		System.out.println("ttttttttttttt" + actualText);
+		// Assertion
+		Assert.assertEquals(expectedAlertMessage, actualText);
+
+		if (expectedAlertMessage == actualText) {
+			System.out.println("Task Created");
+		} else {
+			System.out.println("Not Created");
+		}
+
+		Assertions.assertEquals(expectedAlertMessage, actualText);
+
 	}
 
 }
